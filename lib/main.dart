@@ -21,8 +21,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expenses App'),
+        elevation: 2,
+        backgroundColor: Colors.lightGreen[300]
+      ),
+      body: const AppBody(),
+    );
+  }
+}
+
+class AppBody extends StatelessWidget {
+  const AppBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return const Center(
-      child: Text('Hello'),
+      child: Text('Body'),
     );
   }
 }
