@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class TransactionForm extends StatelessWidget {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
+  final void Function(String, double) submitTransaction;
 
-  TransactionForm({super.key});
+  TransactionForm({super.key, required this.submitTransaction});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,14 @@ class TransactionForm extends StatelessWidget {
         ),
         TextField(
           controller: valueController,
+          keyboardType: TextInputType.number,
           decoration: const InputDecoration(labelText: 'Valor'),
         ),
         ElevatedButton(
           child: Text('Salvar'),
           onPressed: () {
+            submitTransaction(titleController.text,
+                double.tryParse(valueController.text) ?? 0);
             print(titleController.text);
             print(valueController.text);
           },
