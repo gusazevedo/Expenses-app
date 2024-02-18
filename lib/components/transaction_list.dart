@@ -9,34 +9,42 @@ class TransactionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map((tr) {
-        return Card(
-          elevation: 1,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                    tr.title,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                  Text(
-                    DateFormat('dd/MM/yyyy').format(tr.date),
-                    style: const TextStyle(fontSize: 12),
-                  )
-                ]),
-                Text('${tr.value} \$',
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w400)),
-              ],
+    return Container(
+      height: 480,
+      child: ListView.builder(
+        itemCount: transactions.length,
+        itemBuilder: (ctx, index) {
+          final tr = transactions[index];
+
+          return Card(
+            elevation: 1,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tr.title,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          DateFormat('dd/MM/yyyy').format(tr.date),
+                          style: const TextStyle(fontSize: 12),
+                        )
+                      ]),
+                  Text('${tr.value} \$',
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w400)),
+                ],
+              ),
             ),
-          ),
-        );
-      }).toList(),
+          );
+        },
+      ),
     );
   }
 }
